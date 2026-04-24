@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="315" viewBox="0 0 600 315">
+  <!-- Background -->
+  <rect width="600" height="315" fill="#1a1a2e"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="6" height="315" fill="#e63946"/>
+
+  <!-- Grid lines (subtle) -->
+  <line x1="0" y1="105" x2="600" y2="105" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="0" y1="210" x2="600" y2="210" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="315" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="315" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+
+  <!-- TestNG logo circle -->
+  <circle cx="120" cy="157" r="60" fill="none" stroke="#e63946" stroke-width="3" opacity="0.8"/>
+  <circle cx="120" cy="157" r="45" fill="#e63946" opacity="0.15"/>
+  <text x="120" y="148" font-family="monospace" font-size="22" font-weight="bold" fill="#e63946" text-anchor="middle">Test</text>
+  <text x="120" y="174" font-family="monospace" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">NG</text>
+
+  <!-- Main title -->
+  <text x="230" y="130" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">Getting Started</text>
+  <text x="230" y="172" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">with TestNG</text>
+
+  <!-- Subtitle -->
+  <text x="230" y="210" font-family="Arial, sans-serif" font-size="15" fill="#a0a0b0">Java Testing Framework</text>
+
+  <!-- Tags -->
+  <rect x="230" y="230" width="60" height="24" rx="4" fill="#e63946" opacity="0.8"/>
+  <text x="260" y="247" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Java</text>
+
+  <rect x="300" y="230" width="70" height="24" rx="4" fill="#16213e" stroke="#e63946" stroke-width="1" opacity="0.9"/>
+  <text x="335" y="247" font-family="Arial, sans-serif" font-size="12" fill="#e63946" text-anchor="middle">TestNG</text>
+
+  <rect x="380" y="230" width="70" height="24" rx="4" fill="#16213e" stroke="#e63946" stroke-width="1" opacity="0.9"/>
+  <text x="415" y="247" font-family="Arial, sans-serif" font-size="12" fill="#e63946" text-anchor="middle">Testing</text>
+</svg>

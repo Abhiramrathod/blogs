@@ -3,7 +3,7 @@ title: "Getting Started with Spring Boot Microservices"
 description: "A practical guide to building your first microservice with Spring Boot, covering project setup, REST APIs, and best practices from real-world experience at Amdocs."
 date: 2026-04-07
 tags: ["Java", "Spring Boot", "Microservices"]
-cover: "images/spring-boot-cover.png"
+cover: "images/spring-boot-cover.svg"
 ---
 
 ## Why Microservices?

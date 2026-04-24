@@ -6,9 +6,32 @@ tags: ["Java", "JUnit", "Testing"]
 cover: "images/junit-cover.svg"
 ---
 
-## Why JUnit 5?
+# 🚀 Getting Started with JUnit 5
 
-JUnit 5 is the foundation of unit testing in the Java ecosystem. It ships with every major IDE and build tool, making it the natural starting point before reaching for heavier frameworks like TestNG. JUnit 5 (also called JUnit Jupiter) brought a complete rewrite with a cleaner API, better extensibility, and first-class support for Java 8+ features.
+---
+
+## 🤔 Why JUnit 5?
+
+JUnit 5 is the **foundation of unit testing in Java**.
+
+It provides:
+- Clean API
+- Modular architecture
+- Java 8+ support (lambdas, streams)
+- Better extensibility
+
+> 💡 JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
+
+---
+
+## 🧩 JUnit 5 Architecture
+
+```mermaid
+flowchart TD
+    A[JUnit Platform] --> B[JUnit Jupiter]
+    A --> C[JUnit Vintage]
+    B --> D[New Tests]
+    C --> E[Legacy JUnit 4 Tests]
 
 ## Setup
 

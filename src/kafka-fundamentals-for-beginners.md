@@ -3,7 +3,7 @@ title: "Apache Kafka Fundamentals for Beginners"
 description: "Understanding Kafka's core concepts — topics, partitions, producers, and consumers — with simple examples from real-time billing systems."
 date: 2026-04-05
 tags: ["Kafka", "Distributed Systems", "Java"]
-cover: "images/blog/kafka-cover.png"
+cover: "images/kafka-cover.png"
 ---
 
 ## What is Kafka?

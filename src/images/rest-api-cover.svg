@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="315" viewBox="0 0 600 315">
+  <!-- Background -->
+  <rect width="600" height="315" fill="#1a1a2e"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="6" height="315" fill="#9b5de5"/>
+
+  <!-- Grid lines (subtle) -->
+  <line x1="0" y1="105" x2="600" y2="105" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="0" y1="210" x2="600" y2="210" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="315" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="315" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+
+  <!-- REST icon: HTTP method pills -->
+  <rect x="60" y="112" width="52" height="20" rx="10" fill="#6abf69" opacity="0.9"/>
+  <text x="86" y="126" font-family="monospace" font-size="11" font-weight="bold" fill="#1a1a2e" text-anchor="middle">GET</text>
+
+  <rect x="60" y="138" width="52" height="20" rx="10" fill="#f4a261" opacity="0.9"/>
+  <text x="86" y="152" font-family="monospace" font-size="11" font-weight="bold" fill="#1a1a2e" text-anchor="middle">POST</text>
+
+  <rect x="60" y="164" width="52" height="20" rx="10" fill="#4dabf7" opacity="0.9"/>
+  <text x="86" y="178" font-family="monospace" font-size="11" font-weight="bold" fill="#1a1a2e" text-anchor="middle">PUT</text>
+
+  <rect x="60" y="190" width="52" height="20" rx="10" fill="#e63946" opacity="0.9"/>
+  <text x="86" y="204" font-family="monospace" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">DELETE</text>
+
+  <!-- Arrow lines -->
+  <line x1="112" y1="122" x2="155" y2="122" stroke="#9b5de5" stroke-width="1.5" opacity="0.6"/>
+  <line x1="112" y1="148" x2="155" y2="148" stroke="#9b5de5" stroke-width="1.5" opacity="0.6"/>
+  <line x1="112" y1="174" x2="155" y2="174" stroke="#9b5de5" stroke-width="1.5" opacity="0.6"/>
+  <line x1="112" y1="200" x2="155" y2="200" stroke="#9b5de5" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Server box -->
+  <rect x="155" y="108" width="40" height="100" rx="4" fill="none" stroke="#9b5de5" stroke-width="2" opacity="0.7"/>
+  <rect x="160" y="118" width="30" height="6" rx="2" fill="#9b5de5" opacity="0.5"/>
+  <rect x="160" y="130" width="30" height="6" rx="2" fill="#9b5de5" opacity="0.5"/>
+  <rect x="160" y="142" width="30" height="6" rx="2" fill="#9b5de5" opacity="0.5"/>
+
+  <!-- Main title -->
+  <text x="230" y="130" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">REST API</text>
+  <text x="230" y="172" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">Best Practices</text>
+
+  <!-- Subtitle -->
+  <text x="230" y="210" font-family="Arial, sans-serif" font-size="15" fill="#a0a0b0">Design · Validate · Version</text>
+
+  <!-- Tags -->
+  <rect x="230" y="230" width="75" height="24" rx="4" fill="#9b5de5" opacity="0.9"/>
+  <text x="267" y="247" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">REST API</text>
+
+  <rect x="315" y="230" width="55" height="24" rx="4" fill="#16213e" stroke="#9b5de5" stroke-width="1" opacity="0.9"/>
+  <text x="342" y="247" font-family="Arial, sans-serif" font-size="12" fill="#9b5de5" text-anchor="middle">Java</text>
+
+  <rect x="380" y="230" width="90" height="24" rx="4" fill="#16213e" stroke="#9b5de5" stroke-width="1" opacity="0.9"/>
+  <text x="425" y="247" font-family="Arial, sans-serif" font-size="12" fill="#9b5de5" text-anchor="middle">Spring Boot</text>
+</svg>

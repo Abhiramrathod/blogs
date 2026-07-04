@@ -6,7 +6,6 @@ tags: ["HTTP", "REST API", "Spring Boot", "Java"]
 cover: "images/http-query-method-cover.svg"
 ---
 
-![HTTP QUERY Method](images/http-query-method-cover.svg)
 
 ## The Problem with Existing HTTP Methods
 

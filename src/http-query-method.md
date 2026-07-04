@@ -98,14 +98,42 @@ The body is not optional decoration. For `QUERY`, the request content and its me
 
 ## QUERY vs GET vs POST
 
-| Property | GET | QUERY | POST |
-| --- | --- | --- | --- |
-| Safe | Yes | Yes | Not necessarily |
-| Idempotent | Yes | Yes | Not necessarily |
-| Request body semantics | No defined semantics | Expected; defined by the target resource | Expected; defined by the target resource |
-| Query criteria location | URI | Request content | Request content |
-| Cacheable response | Yes | Yes | Limited; normally useful for future GET/HEAD only |
-| Best fit | Simple reads and canonical resources | Complex read-only queries | Creation, commands, processing, and compatibility fallbacks |
+```mermaid
+flowchart LR
+    subgraph GET["GET"]
+        G1["Safe: yes"]
+        G2["Idempotent: yes"]
+        G3["Criteria: URI"]
+        G4["Body semantics: none defined"]
+        G5["Cacheable response: yes"]
+        G6["Best fit: simple reads"]
+    end
+
+    subgraph QUERY["QUERY"]
+        Q1["Safe: yes"]
+        Q2["Idempotent: yes"]
+        Q3["Criteria: request content"]
+        Q4["Body semantics: expected"]
+        Q5["Cacheable response: yes"]
+        Q6["Best fit: complex read-only queries"]
+    end
+
+    subgraph POST["POST"]
+        P1["Safe: not necessarily"]
+        P2["Idempotent: not necessarily"]
+        P3["Criteria: request content"]
+        P4["Body semantics: expected"]
+        P5["Cacheable response: limited"]
+        P6["Best fit: creation, commands, fallbacks"]
+    end
+
+    GET --> QUERY
+    POST --> QUERY
+
+    style GET fill:#ecfdf5,stroke:#059669,color:#111827
+    style QUERY fill:#eff6ff,stroke:#2563eb,color:#111827
+    style POST fill:#fff7ed,stroke:#ea580c,color:#111827
+```
 
 Use `GET` when the request is naturally URI-shaped. Use `QUERY` when the operation is still a read, but the criteria belong in structured request content. Use `POST` when the operation creates something, triggers a command, or when your production infrastructure cannot yet pass `QUERY` reliably.
 
@@ -157,17 +185,39 @@ An empty result set should normally be `200 OK` with an empty collection. `404 N
 
 Recommended error handling:
 
-| Situation | Status |
-| --- | --- |
-| Missing `Content-Type` | `400 Bad Request` |
-| Body does not match `Content-Type` | `400 Bad Request` |
-| Query media type is not supported | `415 Unsupported Media Type` |
-| Query is syntactically valid but cannot be processed | `422 Unprocessable Content` |
-| Requested response type is not available | `406 Not Acceptable` |
-| Query body is too large | `413 Content Too Large` |
-| User is not authenticated | `401 Unauthorized` |
-| User is authenticated but not allowed | `403 Forbidden` |
-| Query is too expensive or rate limited | `429 Too Many Requests` |
+```mermaid
+flowchart TD
+    A["QUERY request"] --> B{"Content-Type present?"}
+    B -->|No| S400A["400 Bad Request"]
+    B -->|Yes| C{"Media type supported?"}
+    C -->|No| S415["415 Unsupported Media Type"]
+    C -->|Yes| D{"Body matches media type?"}
+    D -->|No| S400B["400 Bad Request"]
+    D -->|Yes| E{"Requested response type available?"}
+    E -->|No| S406["406 Not Acceptable"]
+    E -->|Yes| F{"Body size acceptable?"}
+    F -->|No| S413["413 Content Too Large"]
+    F -->|Yes| G{"Authenticated?"}
+    G -->|No| S401["401 Unauthorized"]
+    G -->|Yes| H{"Authorized?"}
+    H -->|No| S403["403 Forbidden"]
+    H -->|Yes| I{"Query processable?"}
+    I -->|No| S422["422 Unprocessable Content"]
+    I -->|Yes| J{"Rate or cost limit exceeded?"}
+    J -->|Yes| S429["429 Too Many Requests"]
+    J -->|No| S200["200 OK"]
+
+    style S200 fill:#ecfdf5,stroke:#059669,color:#111827
+    style S400A fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S400B fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S415 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S422 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S406 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S413 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style S401 fill:#fef2f2,stroke:#dc2626,color:#111827
+    style S403 fill:#fef2f2,stroke:#dc2626,color:#111827
+    style S429 fill:#fef2f2,stroke:#dc2626,color:#111827
+```
 
 ## Caching
 

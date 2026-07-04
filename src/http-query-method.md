@@ -99,40 +99,32 @@ The body is not optional decoration. For `QUERY`, the request content and its me
 ## QUERY vs GET vs POST
 
 ```mermaid
-flowchart LR
-    subgraph GET["GET"]
-        G1["Safe: yes"]
-        G2["Idempotent: yes"]
-        G3["Criteria: URI"]
-        G4["Body semantics: none defined"]
-        G5["Cacheable response: yes"]
-        G6["Best fit: simple reads"]
-    end
+block-beta
+    columns 4
+    H1["Property"] H2["GET"] H3["QUERY"] H4["POST"]
+    R1["Safe"] G1["Yes"] Q1["Yes"] P1["Not necessarily"]
+    R2["Idempotent"] G2["Yes"] Q2["Yes"] P2["Not necessarily"]
+    R3["Request body semantics"] G3["No defined semantics"] Q3["Expected by resource"] P3["Expected by resource"]
+    R4["Query criteria location"] G4["URI"] Q4["Request content"] P4["Request content"]
+    R5["Cacheable response"] G5["Yes"] Q5["Yes"] P5["Limited"]
+    R6["Best fit"] G6["Simple reads"] Q6["Complex read-only queries"] P6["Creation, commands, fallbacks"]
 
-    subgraph QUERY["QUERY"]
-        Q1["Safe: yes"]
-        Q2["Idempotent: yes"]
-        Q3["Criteria: request content"]
-        Q4["Body semantics: expected"]
-        Q5["Cacheable response: yes"]
-        Q6["Best fit: complex read-only queries"]
-    end
-
-    subgraph POST["POST"]
-        P1["Safe: not necessarily"]
-        P2["Idempotent: not necessarily"]
-        P3["Criteria: request content"]
-        P4["Body semantics: expected"]
-        P5["Cacheable response: limited"]
-        P6["Best fit: creation, commands, fallbacks"]
-    end
-
-    GET --> QUERY
-    POST --> QUERY
-
-    style GET fill:#ecfdf5,stroke:#059669,color:#111827
-    style QUERY fill:#eff6ff,stroke:#2563eb,color:#111827
-    style POST fill:#fff7ed,stroke:#ea580c,color:#111827
+    style H1 fill:#e2e8f0,stroke:#64748b,color:#111827
+    style H2 fill:#dcfce7,stroke:#059669,color:#111827
+    style H3 fill:#dbeafe,stroke:#2563eb,color:#111827
+    style H4 fill:#ffedd5,stroke:#ea580c,color:#111827
+    style R1 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style R2 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style R3 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style R4 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style R5 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style R6 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style Q1 fill:#eff6ff,stroke:#bfdbfe,color:#111827
+    style Q2 fill:#eff6ff,stroke:#bfdbfe,color:#111827
+    style Q3 fill:#eff6ff,stroke:#bfdbfe,color:#111827
+    style Q4 fill:#eff6ff,stroke:#bfdbfe,color:#111827
+    style Q5 fill:#eff6ff,stroke:#bfdbfe,color:#111827
+    style Q6 fill:#eff6ff,stroke:#bfdbfe,color:#111827
 ```
 
 Use `GET` when the request is naturally URI-shaped. Use `QUERY` when the operation is still a read, but the criteria belong in structured request content. Use `POST` when the operation creates something, triggers a command, or when your production infrastructure cannot yet pass `QUERY` reliably.
@@ -186,37 +178,39 @@ An empty result set should normally be `200 OK` with an empty collection. `404 N
 Recommended error handling:
 
 ```mermaid
-flowchart TD
-    A["QUERY request"] --> B{"Content-Type present?"}
-    B -->|No| S400A["400 Bad Request"]
-    B -->|Yes| C{"Media type supported?"}
-    C -->|No| S415["415 Unsupported Media Type"]
-    C -->|Yes| D{"Body matches media type?"}
-    D -->|No| S400B["400 Bad Request"]
-    D -->|Yes| E{"Requested response type available?"}
-    E -->|No| S406["406 Not Acceptable"]
-    E -->|Yes| F{"Body size acceptable?"}
-    F -->|No| S413["413 Content Too Large"]
-    F -->|Yes| G{"Authenticated?"}
-    G -->|No| S401["401 Unauthorized"]
-    G -->|Yes| H{"Authorized?"}
-    H -->|No| S403["403 Forbidden"]
-    H -->|Yes| I{"Query processable?"}
-    I -->|No| S422["422 Unprocessable Content"]
-    I -->|Yes| J{"Rate or cost limit exceeded?"}
-    J -->|Yes| S429["429 Too Many Requests"]
-    J -->|No| S200["200 OK"]
+block-beta
+    columns 2
+    SH1["Situation"] SH2["Recommended status"]
+    SR1["Missing Content-Type"] SS1["400 Bad Request"]
+    SR2["Body does not match Content-Type"] SS2["400 Bad Request"]
+    SR3["Query media type is not supported"] SS3["415 Unsupported Media Type"]
+    SR4["Query is syntactically valid but cannot be processed"] SS4["422 Unprocessable Content"]
+    SR5["Requested response type is not available"] SS5["406 Not Acceptable"]
+    SR6["Query body is too large"] SS6["413 Content Too Large"]
+    SR7["User is not authenticated"] SS7["401 Unauthorized"]
+    SR8["User is authenticated but not allowed"] SS8["403 Forbidden"]
+    SR9["Query is too expensive or rate limited"] SS9["429 Too Many Requests"]
 
-    style S200 fill:#ecfdf5,stroke:#059669,color:#111827
-    style S400A fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S400B fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S415 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S422 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S406 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S413 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style S401 fill:#fef2f2,stroke:#dc2626,color:#111827
-    style S403 fill:#fef2f2,stroke:#dc2626,color:#111827
-    style S429 fill:#fef2f2,stroke:#dc2626,color:#111827
+    style SH1 fill:#e2e8f0,stroke:#64748b,color:#111827
+    style SH2 fill:#e2e8f0,stroke:#64748b,color:#111827
+    style SR1 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR2 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR3 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR4 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR5 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR6 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR7 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR8 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SR9 fill:#f8fafc,stroke:#cbd5e1,color:#111827
+    style SS1 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS2 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS3 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS4 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS5 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS6 fill:#fff7ed,stroke:#ea580c,color:#111827
+    style SS7 fill:#fef2f2,stroke:#dc2626,color:#111827
+    style SS8 fill:#fef2f2,stroke:#dc2626,color:#111827
+    style SS9 fill:#fef2f2,stroke:#dc2626,color:#111827
 ```
 
 ## Caching

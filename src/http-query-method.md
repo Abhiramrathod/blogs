@@ -108,23 +108,6 @@ block-beta
     R4["Query criteria location"] G4["URI"] Q4["Request content"] P4["Request content"]
     R5["Cacheable response"] G5["Yes"] Q5["Yes"] P5["Limited"]
     R6["Best fit"] G6["Simple reads"] Q6["Complex read-only queries"] P6["Creation, commands, fallbacks"]
-
-    style H1 fill:#e2e8f0,stroke:#64748b,color:#111827
-    style H2 fill:#dcfce7,stroke:#059669,color:#111827
-    style H3 fill:#dbeafe,stroke:#2563eb,color:#111827
-    style H4 fill:#ffedd5,stroke:#ea580c,color:#111827
-    style R1 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style R2 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style R3 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style R4 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style R5 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style R6 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style Q1 fill:#eff6ff,stroke:#bfdbfe,color:#111827
-    style Q2 fill:#eff6ff,stroke:#bfdbfe,color:#111827
-    style Q3 fill:#eff6ff,stroke:#bfdbfe,color:#111827
-    style Q4 fill:#eff6ff,stroke:#bfdbfe,color:#111827
-    style Q5 fill:#eff6ff,stroke:#bfdbfe,color:#111827
-    style Q6 fill:#eff6ff,stroke:#bfdbfe,color:#111827
 ```
 
 Use `GET` when the request is naturally URI-shaped. Use `QUERY` when the operation is still a read, but the criteria belong in structured request content. Use `POST` when the operation creates something, triggers a command, or when your production infrastructure cannot yet pass `QUERY` reliably.
@@ -190,27 +173,6 @@ block-beta
     SR7["User is not authenticated"] SS7["401 Unauthorized"]
     SR8["User is authenticated but not allowed"] SS8["403 Forbidden"]
     SR9["Query is too expensive or rate limited"] SS9["429 Too Many Requests"]
-
-    style SH1 fill:#e2e8f0,stroke:#64748b,color:#111827
-    style SH2 fill:#e2e8f0,stroke:#64748b,color:#111827
-    style SR1 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR2 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR3 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR4 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR5 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR6 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR7 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR8 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SR9 fill:#f8fafc,stroke:#cbd5e1,color:#111827
-    style SS1 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS2 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS3 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS4 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS5 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS6 fill:#fff7ed,stroke:#ea580c,color:#111827
-    style SS7 fill:#fef2f2,stroke:#dc2626,color:#111827
-    style SS8 fill:#fef2f2,stroke:#dc2626,color:#111827
-    style SS9 fill:#fef2f2,stroke:#dc2626,color:#111827
 ```
 
 ## Caching
